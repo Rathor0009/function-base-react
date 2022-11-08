@@ -43,7 +43,8 @@ const Register: React.FC = () => {
 
   const handleRegister = (formValue: IUser) => {
     const { username, email, password } = formValue;
-
+    console.log(formValue);
+    
     register(username, email, password).then(
       (response) => {
         setMessage(response.data.message);
