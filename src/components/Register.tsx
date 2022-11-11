@@ -13,32 +13,20 @@ const Register: React.FC = () => {
     username: "",
     email: "",
     password: "",
+    confirmPassword: ""
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string()
-      .test(
-        "len",
-        "The username must be between 3 and 20 characters.",
-        (val: any) =>
-          val &&
-          val.toString().length >= 3 &&
-          val.toString().length <= 20
-      )
-      .required("This field is required!"),
+    username: Yup.string().required('Username is required'),
     email: Yup.string()
-      .email("This is not a valid email.")
-      .required("This field is required!"),
+      .required('Email is required')
+      .email('Email is invalid'),
     password: Yup.string()
-      .test(
-        "len",
-        "The password must be between 6 and 40 characters.",
-        (val: any) =>
-          val &&
-          val.toString().length >= 6 &&
-          val.toString().length <= 40
-      )
-      .required("This field is required!"),
+      .required('Password is required')
+      .min(8, 'Password must be at least 8 characters'),
+    confirmPassword: Yup.string()
+      .required('Confirm Password is required')
+      .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
   });
 
   const handleRegister = (formValue: IUser) => {
@@ -77,26 +65,33 @@ const Register: React.FC = () => {
           validationSchema={validationSchema}
           onSubmit={handleRegister}
         >
+          {({ errors, touched }) => (
           <Form>
             {!successful && (
               <div>
                 <div className="form-group">
                   <label htmlFor="username"> Username </label>
-                  <Field name="username" type="text" className="form-control" />
+                    <Field name="username" type="text" className={
+                      'form-control' +
+                      (errors.username && touched.username ? ' is-invalid' : '')
+                    } />
                   <ErrorMessage
                     name="username"
                     component="div"
-                    className="alert alert-danger"
+                    className="invalid-feedback"
                   />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="email"> Email </label>
-                  <Field name="email" type="email" className="form-control" />
+                    <Field name="email" type="email" className={
+                      'form-control' +
+                      (errors.email && touched.email ? ' is-invalid' : '')
+                    } />
                   <ErrorMessage
                     name="email"
                     component="div"
-                    className="alert alert-danger"
+                    className="invalid-feedback"
                   />
                 </div>
 
@@ -105,12 +100,31 @@ const Register: React.FC = () => {
                   <Field
                     name="password"
                     type="password"
-                    className="form-control"
+                      className={
+                        'form-control' +
+                        (errors.password && touched.password ? ' is-invalid' : '')
+                      }
                   />
                   <ErrorMessage
                     name="password"
                     component="div"
-                    className="alert alert-danger"
+                    className="invalid-feedback"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="confirmPassword"> Confirm Password </label>
+                  <Field
+                    name="confirmPassword"
+                    type="password"
+                      className={
+                        'form-control' +
+                        (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')
+                      }
+                  />
+                  <ErrorMessage
+                    name="confirmPassword"
+                    component="div"
+                    className="invalid-feedback"
                   />
                 </div>
 
@@ -133,6 +147,7 @@ const Register: React.FC = () => {
               </div>
             )}
           </Form>
+          )}
         </Formik>
       </div>
     </div>

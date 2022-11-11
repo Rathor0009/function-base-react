@@ -30,3 +30,18 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+.container .jumbotron{
+  display: flex;
+  justify-content: center;
+}
+p{
+  display: flex;
+  justify-content: center;
+}
+ul{
+  display: flex;
+  justify-content: center;
+}
+.email{
+  margin-left: 30px;
+}

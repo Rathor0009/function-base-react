@@ -22,8 +22,11 @@ const Login: React.FC<Props> = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("This field is required!"),
-    password: Yup.string().required("This field is required!"),
+    username: Yup.string()
+      .required('Username is required'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(8, 'Password must be at least 8 characters'),
   });
 
   const handleLogin = (formValue: { username: string; password: string }) => {
@@ -64,24 +67,31 @@ const Login: React.FC<Props> = () => {
           validationSchema={validationSchema}
           onSubmit={handleLogin}
         >
+          {({ errors, touched }) => (
           <Form>
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <Field name="username" type="text" className="form-control" />
+                <Field name="username" type="text" className={
+                  'form-control' +
+                  (errors.username && touched.username ? ' is-invalid' : '')
+                } />
               <ErrorMessage
                 name="username"
                 component="div"
-                className="alert alert-danger"
+                className="invalid-feedback"
               />
             </div>
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <Field name="password" type="password" className="form-control" />
+                <Field name="password" type="password" className={
+                  'form-control' +
+                  (errors.password && touched.password ? ' is-invalid' : '')
+                } />
               <ErrorMessage
                 name="password"
                 component="div"
-                className="alert alert-danger"
+                className="invalid-feedback"
               />
             </div>
 
@@ -102,6 +112,7 @@ const Login: React.FC<Props> = () => {
               </div>
             )}
           </Form>
+          )}
         </Formik>
       </div>
     </div>
