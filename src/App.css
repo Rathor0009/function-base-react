@@ -45,3 +45,18 @@ ul{
 .email{
   margin-left: 30px;
 }
+.image{
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+  max-height: 300px;
+}
+.upload_image{
+  margin-top: 20%;
+  display: grid;
+  justify-content: center;
+}
+.upload{
+  display: grid;
+  justify-content: center;
+}

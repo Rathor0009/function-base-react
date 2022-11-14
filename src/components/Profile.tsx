@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
   }
 
   const handleLogin = (formValue: { username: string; email: string },) => {
-    const { username, email } = formValue;
+    // const { username, email } = formValue;
 
 
     // login(username, password).then(

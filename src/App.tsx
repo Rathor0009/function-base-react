@@ -16,6 +16,7 @@ import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 
 import EventBus from "./common/EventBus";
+import UploadFile from "./components/Upload";
 
 const App: React.FC = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState<boolean>(false);
@@ -81,6 +82,13 @@ const App: React.FC = () => {
               </Link>
             </li>
           )}
+          {currentUser && (
+            <li className="nav-item">
+              <Link to={"/upload"} className="nav-link">
+                Upload
+              </Link>
+            </li>
+          )}
         </div>
 
         {currentUser ? (
@@ -120,6 +128,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/upload" element={<UploadFile />} />
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
