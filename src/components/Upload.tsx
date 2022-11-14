@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-let selectedFile: string | Blob;
 let data : any
 function UploadFile() {
     const [file, setFile] = useState();
@@ -8,14 +7,13 @@ function UploadFile() {
     const handleChange = (e: any) => {
          data = e.target.files[0]
         setFile(data)
-        selectedFile = data
         console.log(data);
         
     }
 
     const onFileUpload = async () => {
         console.log(data);
-        if (!selectedFile) {
+        if (!data) {
             alert('Please select the file first!');
             return;
         }
@@ -23,7 +21,7 @@ function UploadFile() {
         const formData = new FormData();
        
         // Update the formData object
-        formData.append("File", data, data.name);
+        formData.append("file", data, data.name);
     
 
         // Request made to the backend api
@@ -44,6 +42,7 @@ function UploadFile() {
         }
             <input
                 type="file"
+                name="file"
                 onChange={handleChange}
                 accept="image/jpg,.gif,.png,.svg,.webp audio/wav,.mp3"
             />
