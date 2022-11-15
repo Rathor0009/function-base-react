@@ -26,7 +26,25 @@ function UploadFile() {
 
         // Request made to the backend api
         // Send formData object
-        axios.post("http://localhost:8080/upload", formData);
+        axios.post("http://localhost:8080/upload", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        });
+    }
+
+    const onGetFile =async () => {
+        let fileData;
+        let filesElement = document.getElementById("list-files");
+        filesElement!.innerHTML = "";
+       const res = await axios.get("http://localhost:8080/files")
+       console.log(res.data);
+       for(let i=0;i<res.data.length;i++){
+         fileData = res.data[0]
+       }
+       filesElement!.innerHTML = fileData.name
+        console.log(filesElement!.innerHTML);
+       
     }
 
     return (
@@ -49,6 +67,11 @@ function UploadFile() {
             <br></br>
                 <button className='btn btn-primary' onClick={onFileUpload}>
                     Upload
+                </button>
+            <br></br>
+                <p id="list-files" className=""></p>
+                <button className='btn btn-primary' onClick={onGetFile}>
+                    Get Files
                 </button>
         </p>
         </div>
