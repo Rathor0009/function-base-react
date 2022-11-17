@@ -25,6 +25,18 @@ export const login = (username: string, password: string) => {
     });
 };
 
+export const update = (u_id: string, username: string, email: string) => {
+  return axios
+    .patch(API_URL + "update", {
+      u_id,
+      username,
+      email,
+    })
+    .then((response) => {
+      return response;
+    });
+};
+
 export const logout = () => {
   localStorage.removeItem("user");
 };
