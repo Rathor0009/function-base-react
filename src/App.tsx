@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -17,8 +17,11 @@ import BoardAdmin from "./components/BoardAdmin";
 
 import EventBus from "./common/EventBus";
 import UploadFile from "./components/Upload";
+import { LogoutOutlined } from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
 
 const App: React.FC = () => {
+  const navigate = useNavigate();
   const [showModeratorBoard, setShowModeratorBoard] = useState<boolean>(false);
   const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
@@ -44,13 +47,14 @@ const App: React.FC = () => {
     setShowModeratorBoard(false);
     setShowAdminBoard(false);
     setCurrentUser(undefined);
+    navigate('/login');
   };
 
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-         Demo
+         App
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -99,9 +103,10 @@ const App: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
+              <IconButton color="primary" aria-label="logout" component="label" onClick={logOut}>
+               
+                <LogoutOutlined />
+              </IconButton>
             </li>
           </div>
         ) : (
