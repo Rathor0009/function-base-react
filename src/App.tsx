@@ -1,24 +1,23 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import * as AuthService from "./services/auth.service";
 import IUser from './types/user.type';
 
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
-import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import BoardModerator from "./components/BoardModerator";
+import BoardUser from "./components/BoardUser";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import Register from "./components/Register";
 
-import EventBus from "./common/EventBus";
-import UploadFile from "./components/Upload";
 import { LogoutOutlined } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
+import EventBus from "./common/EventBus";
+import UploadFile from "./components/Upload";
 
 const App: React.FC = () => {
   const navigate = useNavigate();

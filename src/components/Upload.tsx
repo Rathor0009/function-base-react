@@ -69,7 +69,7 @@ function UploadFile() {
                     Upload
                 </button>
             <br></br>
-                <p id="list-files" className=""></p>
+                <li id="list-files" className="upload"></li>
                 <button className='btn btn-primary' onClick={onGetFile}>
                     Get Files
                 </button>
