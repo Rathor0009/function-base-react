@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-
 import { getUserBoard } from "../services/user.service";
 import EventBus from "../common/EventBus";
 import { Formik, Field, Form } from "formik";
-import { getCurrentUser, update } from "../services/auth.service";
+import { getCurrentUser, getUser, update } from "../services/auth.service";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
 
 const BoardUser: React.FC = () => {
   const currentUser = getCurrentUser();
@@ -48,6 +49,9 @@ const BoardUser: React.FC = () => {
   };
 
   useEffect(() => {
+    getUser().then((response) => {
+      console.log(response)
+    })
     getUserBoard().then(
       (response) => {
         setContent(response.data);
@@ -72,6 +76,13 @@ const BoardUser: React.FC = () => {
   return (
     <div className="container">
       <header className="jumbotron">
+        <h1>Update Profile</h1>
+      </header>
+      <Box sx={{
+        width: 1090,
+        height: 300,
+        backgroundColor: 'primary.dark',
+      }}>
         <Formik
           initialValues={initialValues}
           onSubmit={handleUpdate}
@@ -82,21 +93,21 @@ const BoardUser: React.FC = () => {
               <Field name="username" type="text" />
             </p>
             <p>
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">&nbsp;Email:</label>
               <Field className="email" name="email" type="text" />
             </p>
             <p>
-              <button type="submit" className="btn btn-primary">
+              <Button type="submit" variant="contained">
                 <span>Update</span>
-              </button>&nbsp;
-              <button type="reset" onClick={handleCancel} className="btn btn-primary">
+              </Button>&nbsp;
+              <Button type="reset" variant="contained" onClick={handleCancel}>
                 <span>Cancel</span>
-              </button>
+              </Button>
             </p>
           </Form>
         </Formik>
-        
-      </header>
+        </Box>
+      
       
     </div>
   );

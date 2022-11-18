@@ -1,5 +1,9 @@
+import { Button } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
+import UploadIcon from '@mui/icons-material/Upload';
+import GetAppIcon from '@mui/icons-material/GetApp';
+
 let data : any
 function UploadFile() {
     const [file, setFile] = useState();
@@ -65,14 +69,15 @@ function UploadFile() {
                 accept="image/jpg,.gif,.png,.svg,.webp audio/wav,.mp3"
             />
             <br></br>
-                <button className='btn btn-primary' onClick={onFileUpload}>
+                <Button startIcon={<UploadIcon />} variant="contained" onClick={onFileUpload}>
                     Upload
-                </button>
+                </Button>
             <br></br>
                 <li id="list-files" className="upload"></li>
-                <button className='btn btn-primary' onClick={onGetFile}>
+                <br></br>
+                <Button startIcon={<GetAppIcon />} variant="outlined" onClick={onGetFile}>
                     Get Files
-                </button>
+                </Button>
         </p>
         </div>
     );

@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 import { getCurrentUser } from "../services/auth.service";
 
@@ -12,6 +13,13 @@ const Profile: React.FC = () => {
           <strong>{currentUser.username}</strong> Profile
         </h3>
       </header>
+      <Box
+        sx={{
+          width: 1080,
+          height: 300,
+          backgroundColor: '#e9ecef',
+        }}>
+          <br></br>
       <p>
         <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
@@ -33,6 +41,7 @@ const Profile: React.FC = () => {
         {currentUser.roles &&
           currentUser.roles.map((role: string, index: number) => <li key={index}>{role}</li>)}
       </ul>
+      </Box>
     </div>
   );
 };

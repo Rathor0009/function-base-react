@@ -18,6 +18,12 @@ import { LogoutOutlined } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import EventBus from "./common/EventBus";
 import UploadFile from "./components/Upload";
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import BoyIcon from '@mui/icons-material/Boy'; 
+import AppsIcon from '@mui/icons-material/Apps';
 
 const App: React.FC = () => {
   const navigate = useNavigate();
@@ -53,12 +59,13 @@ const App: React.FC = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-         App
+          <AppsIcon fontSize="large"/>
+          {/* App */}
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
-              Home
+              <HomeRoundedIcon />
             </Link>
           </li>
 
@@ -81,14 +88,14 @@ const App: React.FC = () => {
           {currentUser && (
             <li className="nav-item">
               <Link to={"/user"} className="nav-link">
-                User
+                <BoyIcon />
               </Link>
             </li>
           )}
           {currentUser && (
             <li className="nav-item">
               <Link to={"/upload"} className="nav-link">
-                Upload
+                <CloudUploadIcon />
               </Link>
             </li>
           )}
@@ -112,13 +119,13 @@ const App: React.FC = () => {
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/login"} className="nav-link">
-                Login
+                <LoginIcon />
               </Link>
             </li>
 
             <li className="nav-item">
               <Link to={"/register"} className="nav-link">
-                Sign Up
+                <PersonAddIcon />
               </Link>
             </li>
           </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/api/auth/";
 
@@ -39,6 +40,12 @@ export const update = (u_id: string, username: string, email: string) => {
 
 export const logout = () => {
   localStorage.removeItem("user");
+};
+
+export const getUser = () => {
+  return axios.get(API_URL + "getuser",{ headers: authHeader() }).then((response) => {
+    return response;
+  })
 };
 
 export const getCurrentUser = () => {

@@ -4,6 +4,7 @@ import * as Yup from "yup";
 
 import IUser from "../types/user.type";
 import { register } from "../services/auth.service";
+import { Button } from "@mui/material";
 
 const Register: React.FC = () => {
   const [successful, setSuccessful] = useState<boolean>(false);
@@ -129,7 +130,7 @@ const Register: React.FC = () => {
                 </div>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                  <Button type="submit" variant="contained" className="btn-block">Sign Up</Button>
                 </div>
               </div>
             )}

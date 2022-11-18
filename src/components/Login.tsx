@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import { login } from "../services/auth.service";
+import { Button } from "@mui/material";
 
 type Props = {}
 
@@ -96,12 +97,12 @@ const Login: React.FC<Props> = () => {
             </div>
 
             <div className="form-group">
-              <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+              <Button type="submit" variant="contained" className="btn-block" disabled={loading}>
                 {loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}
                 <span>Login</span>
-              </button>
+              </Button>
             </div>
 
             {message && (
